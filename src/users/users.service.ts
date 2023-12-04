@@ -3,6 +3,7 @@ import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from './entities/user.entity'
 
+//Injectable() is a decorator that marks a class as a provider. It tells Nest that this class can be injected into other classes.
 @Injectable()
 export class UsersService {
   // Repository<User> is a generic type. It tells TypeScript that this repository will only be used with the User entity.
@@ -29,7 +30,7 @@ export class UsersService {
     return this.repository.find({ where: { email } })
   }
 
-  // Partial<User> means that all properties of User are optional. attrs means attributes.
+  // Partial<User> means that all properties of User are optional. attrs means attributes of User in this case.
   async update(id: number, attrs: Partial<User>) {
     const user = await this.findOne(id)
     if (!user) {
